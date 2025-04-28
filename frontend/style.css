@@ -10,24 +10,50 @@ body {
   background-color: #f4f4f9;
   color: #333;
   line-height: 1.6;
+  display: flex;
+  height: 100vh;;
+  flex-direction:column;;
   margin: 0;
   padding: 0;
 }
 
-/* Header */
+main{
+  flex:1;
+  display: flex;
+  flex-direction: rows;
+}
+/* Header*/
 header {
-  background: #4CAF50;
+  background: #28a745;
   color: #fff;
-  padding: 1rem 0;
+  padding: 0.2rem 0;
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
-  /* align-items: center; */
+  /* position: fixed; */
+}
+
+/* footer */
+footer {
+  background-color: white;
+  color: black;
+  text-align: center;
+  font-size: 1rem;
+  
+}
+
+/* Sidebar (for future use) */
+.sidebar {
+  width: 300px; /* you can adjust */
+  background-color: #f0f0f0;
+  border-right: 1px solid #ccc;
+  padding: 1rem;
 }
 
 /* Chat Container */
 .chat-container {
-  width: 50%;
+  width: 70%;
+  align-self: flex-end;
   max-width: 800px;
   margin: 2rem auto;
   background: #fff;
@@ -36,30 +62,41 @@ header {
   overflow: hidden;
   flex: 1;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-between;
+  /* height: calc(100vh - 120px); set a fixed height for the chat container; */
 }
+
 
 /* Chat Messages */
 #messages {
   flex: 1;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;;
+  list-style: none;
+  padding-right: 10px;
+  margin-bottom: 10px;
   overflow-y: auto;
   border-bottom: 1px solid #ddd;
-  list-style-type: none;
-  /* Removes bullet points */
+  
+  
 }
 
 #messages li {
-  background: skyblue;
-  margin: 10px;
+  list-style: none;;
+  display: block;
+  margin: 10px 0;
   padding: 10px 15px;
   border-radius: 20px;
   max-width: 60%;
+  width: fit-content;;
   word-wrap: break-word;
 }
 
 form {
   display: flex;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
 }
 
 #input {
@@ -84,8 +121,10 @@ button:hover {
 }
 
 .sent {
-  display: inline-block;
-  background-color: lightgreen;
+  align-self: flex-end; /* Align to the right */
+  display:flex;
+  justify-content: flex-end;;
+  background-color: #007bff; /* blue for sender */
   color: white;
   padding: 8px 12px;
   border-radius: 15px;
@@ -93,18 +132,41 @@ button:hover {
   text-align: right;
   list-style: none;
   max-width: 60%;
-  margin-left: auto;
+  margin-left: auto; /* move to right */
+  width: fit-content; /* 👈 add this */
+  min-width: 50px; /* 👈 optional: minimum width for very tiny messages */
+  word-break: break-word; /* 👈 to avoid overflow if a very long word comes */
+  
+  /* Optional: add a shadow for better visibility */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Optional: add a transition for smoothness */ 
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .received {
-  display: inline-block;
-  background-color: #ffd1d1;
-  color: red;
+  align-self: flex-start; /* Align to the left */
+  justify-content: flex-start;
+  background-color: #28a745; /* green for receiver */
+  color: white;
   padding: 8px 12px;
   border-radius: 15px;
   margin: 5px;
   text-align: left;
   list-style: none;
   max-width: 60%;
-  margin-right: auto;
+  margin-right: auto; /* move to left */
+  width: fit-content; /* 👈 add this */
+  min-width: 50px; /* 👈 optional: minimum width */
+  word-break: break-word; /* 👈 to avoid overflow */
+  
+  /* Optional: add a shadow for better visibility */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Optional: add a transition for smoothness */
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  
+}
+.sent, .received {
+  padding: 10px 15px;
+  font-size: 1rem;
+  line-height: 1.4;
 }

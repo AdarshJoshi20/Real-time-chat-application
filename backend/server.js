@@ -16,13 +16,16 @@ const io = require('socket.io')(http, {
 
 io.on('connection', (socket) => {
     console.log('a user connected');
+    console.log('Socket ID:', socket.id); // Log the socket ID
 
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        console.log('user disconnected',socket.id);
+        
     });
 
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
+    socket.on('sendMessage', (msg) => {
+        console.log('Received message:', msg);
+        io.emit('receiveMessage', msg);
     });
 });
 

@@ -1,5 +1,4 @@
-// const { text } = require("body-parser");
-
+// this is the clinet-side code for the chat application using socket.io
 const socket = io();
 
 const form = document.getElementById('form');
@@ -9,8 +8,35 @@ const messages = document.getElementById('messages');
 let mySocketId = '';
 socket.on('connect', () => {
   mySocketId = socket.id;
-  console.log('Connected with socket ID:', mySocketId);
+  console.log('connected to server with ID:', mySocketId);
 });
+
+
+//send message to server
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if(input.value.trim()) {
+    socket.emit('sendMessage', {
+      sender_id: mySocketId,
+      text: input.value
+    });
+    input.value = '';
+  }
+});
+
+// receive message from server
+socket.on('receiveMessage', (msg) => {
+  const li = document.createElement('li');
+  li.textContent = msg.text;
+  li.classList.add(
+    msg.sender_id === mySocketId ? 'sent' : 'received'
+  );
+  messages.appendChild(li);
+  messages.scrollTop = messages.scrollHeight; // auto scroll to bottom
+});
+  
+
+
 
 
 form.addEventListener('submit', (e) => {
