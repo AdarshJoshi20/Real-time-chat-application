@@ -17,6 +17,7 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   if(input.value.trim()) {
     socket.emit('sendMessage', {
+      sender_name:username,
       sender_id: mySocketId,
       text: input.value
     });
@@ -41,10 +42,11 @@ socket.on('receiveMessage', (msg) => {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  if (input.value) {
+  if (input.value.trim()) {
     socket.emit('chat message',{
         id: mySocketId,
-        text: input.value
+        username: username,
+        text: input.value.trim()
     });
     input.value = '';
   }
@@ -52,9 +54,15 @@ form.addEventListener('submit', (e) => {
 
 socket.on('chat message', (msg) => {
   const item = document.createElement('li');
+  const nameTag = document.createElement('strong');
+  nameTag.textContent = msg.username + ': ';
+  item.appendChild(nameTag);
+  
   item.textContent = msg.text;
+
     if (msg.id === mySocketId) {
         item.classList.add('sent');
+        console.log('Sent message to:', item);
         breakline = document.createElement('br');
     } else {
         item.classList.add('received');

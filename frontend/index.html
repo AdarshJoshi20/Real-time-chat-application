@@ -10,9 +10,17 @@
     <title>real time time chat app</title>
 </head>
 
+<!-- if user is not logged in , reditrect to login page, else stay on this page. -->
+<script>
+    const username = localStorage.getItem('username');
+    if (!username) {
+      window.location.href = 'login.html';
+    }
+  </script>
+  
 <body>
     <header>
-        <h1>Real time chat application</h1>
+        <h1>Zently</h1>
     </header>
 
     <main>
