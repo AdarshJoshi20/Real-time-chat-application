@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8b+z4+2e5c5e5e5e5e5e5e5e5e5e5e5e5e5" crossorigin="anonymous">
-    <title>real time time chat app</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8b+z4+2e5c5e5e5e5e5e5e5e5e5e5e5e5e5" crossorigin="anonymous">
+
+    <link rel="icon" type="ico" href="\assets\icons\favicon1.ico">
+
+    <title>Zently: Real time time chat app</title>
 </head>
 
 <!-- if user is not logged in , reditrect to login page, else stay on this page. -->
@@ -16,11 +18,15 @@
     if (!username) {
       window.location.href = 'login.html';
     }
-  </script>
+</script>
   
 <body>
     <header>
-        <h1>Zently</h1>
+        <div class="header-content">
+            <img src="\assets\icons\favicon1.png" alt="Chat Icon" class="logo">
+            <h1>Zently</h1>
+        </div>
+        
     </header>
 
     <main>
@@ -37,8 +43,8 @@
             </ul>
 
             <form action="" id="form">
-                <input type="text" name="message" autocomplete="off" id="message" placeholder="Enter a message"
-                    required>
+                <!-- use textarea instead of input with type text as it will submit the form on pressing "enter" -->
+                <textarea name="message" rows = "1" autocomplete="off" id="message" placeholder="Enter a message"></textarea>
                 <button type="submit">Send</button>
             </form>
         </div>

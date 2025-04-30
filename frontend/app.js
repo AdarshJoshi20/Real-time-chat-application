@@ -2,7 +2,15 @@
 const socket = io();
 
 const form = document.getElementById('form');
+
 const input = document.getElementById('message');
+
+//this eventListener is used to resize the input field as the user types (i.e when enter is pressed)
+input.addEventListener('input', () => {
+  input.style.height = 'auto'; // Reset first
+  input.style.height = input.scrollHeight + 'px'; // Grow
+});
+
 const messages = document.getElementById('messages');
 
 let mySocketId = '';
@@ -22,12 +30,14 @@ form.addEventListener('submit', (e) => {
       text: input.value
     });
     input.value = '';
+    input.style.height = 'auto';
   }
 });
 
 // receive message from server
 socket.on('receiveMessage', (msg) => {
   const li = document.createElement('li');
+  // li.innerHTML = msg.text.replace(/\n/g, '<br>'); // convert newlines in input to <br>
   li.textContent = msg.text;
   li.classList.add(
     msg.sender_id === mySocketId ? 'sent' : 'received'

@@ -5,7 +5,7 @@ const path = require('path');
 
 // Correct - serve frontend folder
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
-
+app.use('/assets', express.static(path.join(__dirname, '..', 'assets')));
 const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
     cors: {
